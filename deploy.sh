@@ -9,15 +9,15 @@ fi
 source .deploy
 
 echo "Deploying to ${SFTP_HOST}:${SFTP_PORT}..."
-read -p "Username: " USERNAME
 read -sp "Password: " PASSWORD
 echo
 
-sftp -P "$SFTP_PORT" -oBatchMode=no "$USERNAME@$SFTP_HOST" <<EOF
+sftp -P "$SFTP_PORT" -oBatchMode=no "$SFTP_USER@$SFTP_HOST" <<EOF
 cd $SFTP_PATH
 put index.js
 put package.json
 put .env
+put .gitignore
 bye
 EOF
 
